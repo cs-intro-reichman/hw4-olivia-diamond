@@ -13,14 +13,46 @@ public class KeywordsDetector {
             "Our new technology presents a significant paradigm shift",
             "Effective presentations must be clear, concise, and humble"
         };
+       
         // Some keywords that typically signal bullshit contents in business presentations 
         String[] keywords = {"synergy", "disrupt", "leverage", "Paradigm", "transform"};
         detectAndPrint(sentences, keywords);
     }
+       
+    
 
     // Iterates through all the sentences.
     // If a sentence contains one or more of the kewords, prints it.
-    public static void detectAndPrint(String[] sentences, String[] keywords) {
-        // Replace this comment with your code
+   
+   //make a new function to find the keywords in the sentences (true/false)
+   
+   public static boolean findWords(String[] sentences, String[] keywords) {
+        for (int j=0; j<sentences.length; j++){
+            String sentencesLowerCase = sentences[j].toLowerCase();
+              
+            for (int i = 0; i< (keywords.length); i++){
+                if (sentencesLowerCase.contains(keywords[i].toLowerCase())) {
+                     return true;
+                }    
+            }
+        }
+            return false;
+    }
+            
+   
+   //function to print out if keyword detected (use findWords funtion)
+   
+   public static void detectAndPrint(String[] sentences, String[] keywords) {
+         if (findWords(sentences, keywords) == true) {
+            for (int i = 0; i < sentences.length; i++) {
+                for (int j = 0; j < keywords.length; j++){
+                    String sentencesLowerCase = sentences[i].toLowerCase();
+                    if (sentencesLowerCase.contains(keywords[j].toLowerCase())) {
+                    System.out.println(sentences[i]);
+                    break;
+                     }
+                }
+            }
+        }  
     }
 }
